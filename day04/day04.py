@@ -1,34 +1,24 @@
 start = 264360
 end = 746325
 
-options = [x for x in range(start, end)]
+options = (x for x in range(start, end))
 
 def hasDeclines(n):
-    for c in range(len(n)):
-        if c > 0 and (int(n[c]) < int(n[c-1])):
-            return True
-    return False
+    return any(c1 > c2 for c1, c2 in zip(str(n), str(n)[1:]))
 
 def hasDouble(n):
-    for c in range(len(n)):
-        if c > 0 and (int(n[c]) == int(n[c-1])):
-            return True
-    return False
+    return any(c1 == c2 for c1, c2 in zip(str(n), str(n)[1:]))
 
 def hasMoreThanDouble(n):
-    for c in n:
-        if n.count(c) == 2:
-            return False
-        
-    return True
+    return any(c for c in n if n.count(c) == 2)
 
 possibilities = []
 part2Possibilities = []
 for o in options:
     chr = str(o)
-    if hasDeclines(chr) == False and hasDouble(chr) == True:
+    if not hasDeclines(chr) and hasDouble(chr):
         possibilities.append(chr)
-        if hasMoreThanDouble(chr) == False:
+        if hasMoreThanDouble(chr):
             part2Possibilities.append(chr)
 
 part1 = len(possibilities)
