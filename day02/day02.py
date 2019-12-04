@@ -3,7 +3,6 @@ def get_data(file):
         data = list(map(int, f.read().split(',')))
     return data
 
-
 origLocations = get_data('day02/input.txt')
 
 def part_one(locs, noun, verb):
