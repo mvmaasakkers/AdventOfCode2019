@@ -3,14 +3,18 @@ end = 746325
 
 options = (x for x in range(start, end))
 
+
 def hasDeclines(n):
     return any(c1 > c2 for c1, c2 in zip(str(n), str(n)[1:]))
+
 
 def hasDouble(n):
     return any(c1 == c2 for c1, c2 in zip(str(n), str(n)[1:]))
 
+
 def hasMoreThanDouble(n):
     return any(c for c in n if n.count(c) == 2)
+
 
 possibilities = []
 part2Possibilities = []
