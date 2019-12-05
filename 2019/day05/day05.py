@@ -67,4 +67,4 @@ def RUN(locs, userInput):
             pos = pos + scoop
 
 print("Part 1:", RUN(data, 1))
-print("Part 5:", RUN(data, 5))
+print("Part 2:", RUN(data, 5))
