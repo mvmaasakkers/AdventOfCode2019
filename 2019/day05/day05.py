@@ -35,15 +35,20 @@ def RUN(locs, userInput):
                 outputPos = loc[pos+3]
         
         if opcode == 1:
+            # add
             loc[outputPos] = loc[input1Pos] + loc[input2Pos]
         if opcode == 2:
+            # multiply
             loc[outputPos] = loc[input1Pos] * loc[input2Pos]
         if opcode == 3:
+            # input
             loc[loc[pos+1]] = userInput
         if opcode == 4:
+            # output
             if loc[input1Pos] != 0:
                 return loc[input1Pos]
         if opcode == 5:
+            # jump-if-true
             if loc[input1Pos] != 0:
                 pointerChanged = True
                 pos = loc[input2Pos]
@@ -59,10 +64,9 @@ def RUN(locs, userInput):
             # equals
             loc[outputPos] = 1 if loc[input1Pos] == loc[input2Pos] else 0
         if opcode == 99:
-            # End
+            # end
             break
 
-        # print(opcode, scoop)
         if not pointerChanged:
             pos = pos + scoop
 
