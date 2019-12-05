@@ -3,7 +3,7 @@ def get_data(file):
         data = list(map(int, f.read().split(',')))
     return data
 
-origLocations = get_data('day02/input.txt')
+origLocations = get_data('2019/day02/input.txt')
 
 def part_one(locs, noun, verb):
     loc = list.copy(locs)
@@ -12,11 +12,18 @@ def part_one(locs, noun, verb):
     pos = 0
     while True:
         opcode = loc[pos]
+        if opcode not in [99]:
+            input1Pos = loc[pos+1]
+            if opcode in [1, 2, 3]:
+                input2Pos = loc[pos+2]
+            if opcode in [1, 2]:
+                outputPos = loc[pos+3]
+
         if opcode == 1:
-            loc[loc[pos+3]] = loc[loc[pos+1]] + loc[loc[pos+2]]
+            loc[outputPos] = loc[input1Pos] + loc[input2Pos]
 
         if opcode == 2:
-            loc[loc[pos+3]] = loc[loc[pos+1]] * loc[loc[pos+2]]
+            loc[outputPos] = loc[input1Pos] * loc[input2Pos]
         if opcode == 99:
             # End
             return loc[0]

@@ -4,7 +4,7 @@ def get_data(file):
     return data
 
 
-data = get_data("day03/input.txt")
+data = get_data("2019/day03/input.txt")
 
 changeX = {'R': '1', 'L': '-1', 'U': '0', 'D': '0'}
 changeY = {'R': '0', 'L': '0', 'U': '-1', 'D': '1'}

@@ -2,7 +2,7 @@ from itertools import cycle
 import math
 
 modules = [];
-with open('day01/input.txt', 'r') as f:
+with open('2019/day01/input.txt', 'r') as f:
     for line in f:
         if line != '':
             modules.append(int(line));
