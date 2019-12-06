@@ -9,29 +9,29 @@ for line in data:
     parts = line.split(")")
     objects[parts[1]].append(parts[0])
 
-def traverseR(obj, i):
+def traverse(obj, i):
     i.append(obj)
     if obj in objects:
         for o in objects[obj]:
             if o in objects:
-                return traverseR(o, i)
+                return traverse(o, i)
     return i
 
-def traverseToR(obj, to, i):
+def traverseTo(obj, to, i):
     i.append(obj)
     if obj in objects:
         if obj != to:
             for o in objects[obj]:
                 if o in objects:
-                    return traverseToR(o, to, i)
+                    return traverseTo(o, to, i)
     return i
 
-print("Part 1:", sum([len(traverseR(o, [])) for o in objects]))
+print("Part 1:", sum([len(traverse(o, [])) for o in objects]))
 
-tYou = traverseR('YOU', [])
-tSan = traverseR('SAN', [])
+youToCOM = traverse('YOU', [])
+sanToCOM = traverse('SAN', [])
 
-base = [x for x in tYou if x in tSan][0]
+base = [planet for planet in youToCOM if planet in sanToCOM][0]
 
 # The 2 times - 2 are for removing the start and end object from the list
-print("Part 2:", len(traverseToR('YOU', base, [])) - 2 + len(traverseToR('SAN', base, [])) - 2)
+print("Part 2:", len(traverseTo('YOU', base, [])) - 2 + len(traverseTo('SAN', base, [])) - 2)
