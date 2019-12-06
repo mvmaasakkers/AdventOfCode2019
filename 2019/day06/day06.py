@@ -3,7 +3,7 @@ def get_data(file):
         data = list(map(str, f.read().split("\n")))
     return data
 
-data = get_data("2019/day06/test.txt")
+data = get_data("2019/day06/input.txt")
 objects = {line.split(")")[1]: [] for line in data}
 for line in data:
     parts = line.split(")")
@@ -34,4 +34,4 @@ tSan = traverseR('SAN', [])
 base = [x for x in tYou if x in tSan][0]
 
 # The 2 times - 2 are for removing the start and end object from the list
-print("Part 2:", (len(traverseToR('YOU', base, [])) - 2) + (len(traverseToR('SAN', base, [])) - 2))
+print("Part 2:", len(traverseToR('YOU', base, [])) - 2 + len(traverseToR('SAN', base, [])) - 2)
