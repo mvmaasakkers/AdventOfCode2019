@@ -1,13 +1,7 @@
-def get_data(file):
-    with open(file, 'r') as f:
-        data = list(map(str, f.read().split("\n")))
-    return data
-
-data = get_data("2019/day06/input.txt")
-objects = {line.split(")")[1]: [] for line in data}
+data = [l.split(")") for l in open('2019/day06/input.txt').read().split('\n')]
+objects = {l[1]: [] for l in data}
 for line in data:
-    parts = line.split(")")
-    objects[parts[1]].append(parts[0])
+    objects[line[1]].append(line[0])
 
 def traverse(obj, i):
     i.append(obj)
