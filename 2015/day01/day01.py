@@ -3,7 +3,7 @@ def get_data(file):
         data = f.readline()
     return data
 
-data = get_data("2015/day01/input.txt")
+data = get_data("input.txt")
 
 part1 = data.count("(") - data.count(")")
 
