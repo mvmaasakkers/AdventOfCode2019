@@ -12,5 +12,5 @@ def part2(file_path):
         return 0
 
 
-print("Part 1: ", part1('input.txt'))
-print("Part 2: ", part2('input.txt'))
+print("Part 1: ", part1('input_test.txt'))
+print("Part 2: ", part2('input_test.txt'))
