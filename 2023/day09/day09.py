@@ -3,6 +3,9 @@ def part1(file_path):
         input_data = [line for line in file.read().splitlines()]
         answer = 0
 
+        for line in input_data:
+            print(line)
+
         return answer
 
 
@@ -10,6 +13,9 @@ def part2(file_path):
     with open(file_path, 'r') as file:
         input_data = [line for line in file.read().splitlines()]
         answer = 0
+
+        for line in input_data:
+            print(line)
 
         return answer
 

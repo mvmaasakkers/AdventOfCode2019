@@ -12,3 +12,10 @@ def transpose(lst):
 
 def batch(lst, size):
     return [lst[i:i + size] for i in range(0, len(lst), size)]
+
+
+def print_grid(grid):
+    for row in grid:
+        for col in row:
+            print(col, sep="", end="")
+        print()
