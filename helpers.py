@@ -19,3 +19,4 @@ def print_grid(grid):
         for col in row:
             print(col, sep="", end="")
         print()
+    print()
