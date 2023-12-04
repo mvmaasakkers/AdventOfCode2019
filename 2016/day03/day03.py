@@ -1,10 +1,6 @@
 import re
 
-import numpy
-
-
-def split_list(lst, size):
-    return [lst[i:i + size] for i in range(0, len(lst), size)]
+from helpers import transpose, batch
 
 
 def part1(file_path):
@@ -16,10 +12,10 @@ def part1(file_path):
 
 def part2(file_path):
     with open(file_path, 'r') as file:
-        numbers = [[int(n) for n in re.split(r"\s+", line.strip())] for line in list(file.read().splitlines())]
-        numbers = numpy.transpose(numbers)
+        numbers = transpose(
+            [[int(n) for n in re.split(r"\s+", line.strip())] for line in list(file.read().splitlines())])
 
-        possible_triangles = split_list(numbers[0], 3) + split_list(numbers[1], 3) + split_list(numbers[2], 3)
+        possible_triangles = batch(numbers[0], 3) + batch(numbers[1], 3) + batch(numbers[2], 3)
 
         return sum(1 for n in possible_triangles if n[0] + n[1] > n[2] and n[1] + n[2] > n[0] and n[0] + n[2] > n[1])
 
