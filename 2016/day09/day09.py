@@ -5,33 +5,88 @@ def part1(file_path):
     with open(file_path, 'r') as file:
         line = file.read()
 
-        markerRegex = re.compile(r'\(\d+x\d+\)')
-        found = len(markerRegex.findall(line))
-        print(found)
+        marker_regex = re.compile(r'\(\d+x\d+\)')
+        found = len(marker_regex.findall(line))
+        start_pos = 0
+        end_pos = 0
         pos = 0
-        for _ in range(found):
-            marker = markerRegex.search(line)
-            x, y = [int(n) for n in line[marker.start() + 1:marker.end() - 1].split("x")]
-            print(line)
-            repeater = line[marker.end():marker.end() + x]
+        count = 0
+        running = True
+        while running:
+            ch = line[pos]
+            if ch == '(':
+                start_pos = pos
+                pos += 1
+            elif ch == ')':
+                end_pos = pos
+                x, y = [int(n) for n in line[start_pos + 1:end_pos].split("x")]
+                repeater = line[end_pos + 1:end_pos + x + 1]
+                replace_with = ''.join(list([repeater for _ in range(y)]))
+                line = line[:start_pos] + ''.join(list([repeater for _ in range(y)])) + line[end_pos + x + 1:]
+                pos = start_pos + len(replace_with)
+            else:
+                pos += 1
 
-            line = line[:marker.start()] + ''.join(list([repeater for _ in range(y)])) + line[marker.end()+x:]
+            count += 1
 
-        print(line)
+            if pos >= len(line):
+                running = False
 
         return len(line)
 
 
+def getLength(data):
+    length = pos = 0
+    while pos < len(data):
+        if data[pos] == '(':
+            end_pos = data.find(')', pos)
+            (repeater, repeat) = [int(n) for n in data[pos + 1:end_pos].split('x')]
+            length += getLength(data[end_pos + 1:end_pos + repeater + 1]) * repeat
+            pos = end_pos + repeater
+        else:
+            length += 1
+        pos += 1
+    return length
+
+
 def part2(file_path):
     with open(file_path, 'r') as file:
-        input_data = [line for line in file.read().splitlines()]
-        answer = 0
+        line = file.read().strip()
 
-        for line in input_data:
-            print(line)
+        return getLength(line)
+        # I HATE RECURSION!
+        #
+        #
+        # marker_regex = re.compile(r'\(\d+x\d+\)')
+        # found = len(marker_regex.findall(line))
+        # start_pos = 0
+        # end_pos = 0
+        # pos = 0
+        # count = 0
+        # running = True
+        # while running:
+        #     ch = line[pos]
+        #     if ch == '(':
+        #         start_pos = pos
+        #         pos += 1
+        #     elif ch == ')':
+        #         end_pos = pos
+        #         x, y = [int(n) for n in line[start_pos + 1:end_pos].split("x")]
+        #         repeater = line[end_pos + 1:end_pos + x + 1]
+        #         replace_with = ''.join(list([repeater for _ in range(y)]))
+        #         line = line[:start_pos] + ''.join(list([repeater for _ in range(y)])) + line[end_pos + x + 1:]
+        #         pos = start_pos
+        #     else:
+        #         pos += 1
+        #
+        #     count += 1
+        #
+        #     if pos >= len(line):
+        #         running = False
+        #
+        # print(line)
+        # return len(line)
 
-        return answer
 
-
-print("Part 1: ", part1('input_test.txt'))
-print("Part 2: ", part2('input_test.txt'))
+print("Part 1: ", part1('input.txt'))
+print("Part 2: ", part2('input.txt'))

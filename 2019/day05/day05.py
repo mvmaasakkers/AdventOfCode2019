@@ -1,17 +1,24 @@
-import sys
-import os
+def part1(file_path):
+    with open(file_path, 'r') as file:
+        input_data = [line for line in file.read().splitlines()]
+        answer = 0
 
-sys.path.append(os.path.abspath("2019"))
-import intcode
+        for line in input_data:
+            print(line)
 
-
-def get_data(file):
-    with open(file, 'r') as f:
-        data = list(map(int, f.read().split(",")))
-    return data
+        return answer
 
 
-data = get_data("2019/day05/input.txt")
+def part2(file_path):
+    with open(file_path, 'r') as file:
+        input_data = [line for line in file.read().splitlines()]
+        answer = 0
 
-print("Part 1:", intcode.RUN(list.copy(data), [1]))
-print("Part 2:", intcode.RUN(list.copy(data), [5]))
+        for line in input_data:
+            print(line)
+
+        return answer
+
+
+print("Part 1: ", part1('input_test.txt'))
+print("Part 2: ", part2('input_test.txt'))

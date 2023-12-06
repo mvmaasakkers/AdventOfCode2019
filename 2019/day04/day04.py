@@ -1,32 +1,24 @@
-start = 264360
-end = 746325
+def part1(file_path):
+    with open(file_path, 'r') as file:
+        input_data = [line for line in file.read().splitlines()]
+        answer = 0
 
-options = (x for x in range(start, end))
+        for line in input_data:
+            print(line)
 
-
-def hasDeclines(n):
-    return any(c1 > c2 for c1, c2 in zip(str(n), str(n)[1:]))
-
-
-def hasDouble(n):
-    return any(c1 == c2 for c1, c2 in zip(str(n), str(n)[1:]))
+        return answer
 
 
-def hasMoreThanDouble(n):
-    return any(c for c in n if n.count(c) == 2)
+def part2(file_path):
+    with open(file_path, 'r') as file:
+        input_data = [line for line in file.read().splitlines()]
+        answer = 0
+
+        for line in input_data:
+            print(line)
+
+        return answer
 
 
-possibilities = []
-part2Possibilities = []
-for o in options:
-    chr = str(o)
-    if not hasDeclines(chr) and hasDouble(chr):
-        possibilities.append(chr)
-        if hasMoreThanDouble(chr):
-            part2Possibilities.append(chr)
-
-part1 = len(possibilities)
-print("Part 1:", part1)
-
-part2 = len(part2Possibilities)
-print("Part 2:", part2)
+print("Part 1: ", part1('input_test.txt'))
+print("Part 2: ", part2('input_test.txt'))

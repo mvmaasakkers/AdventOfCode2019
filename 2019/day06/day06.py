@@ -1,22 +1,24 @@
-data = [l.split(")") for l in open('2019/day06/input.txt').read().split('\n')]
-objects = {l[1]: [] for l in data}
-for line in data:
-    objects[line[1]].append(line[0])
+def part1(file_path):
+    with open(file_path, 'r') as file:
+        input_data = [line for line in file.read().splitlines()]
+        answer = 0
 
-def traverse(obj, to):
-    if obj in objects:
-        if obj != to:
-            for o in objects[obj]:
-                if o in objects:
-                    return [obj] + traverse(o, to)
-    return [obj]
+        for line in input_data:
+            print(line)
 
-print("Part 1:", sum([len(traverse(o, 'COM')) for o in objects]))
+        return answer
 
-youToCOM = traverse('YOU', 'COM')
-sanToCOM = traverse('SAN', 'COM')
 
-base = [planet for planet in youToCOM if planet in sanToCOM][0]
+def part2(file_path):
+    with open(file_path, 'r') as file:
+        input_data = [line for line in file.read().splitlines()]
+        answer = 0
 
-# The 2 times - 2 are for removing the start and end object from the list
-print("Part 2:", len(traverse('YOU', base)) - 2 + len(traverse('SAN', base)) - 2)
+        for line in input_data:
+            print(line)
+
+        return answer
+
+
+print("Part 1: ", part1('input_test.txt'))
+print("Part 2: ", part2('input_test.txt'))

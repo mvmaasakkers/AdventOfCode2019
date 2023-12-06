@@ -1,27 +1,24 @@
-from itertools import cycle
-import math
+def part1(file_path):
+    with open(file_path, 'r') as file:
+        input_data = [line for line in file.read().splitlines()]
+        answer = 0
 
-modules = [];
-with open('2019/day01/input.txt', 'r') as f:
-    for line in f:
-        if line != '':
-            modules.append(int(line));
+        for line in input_data:
+            print(line)
 
-part1 = 0
-part2 = 0
+        return answer
 
-for module in modules:
-    fuel = math.floor(module / 3) - 2
-    part1 += fuel
-    mass = fuel
-    while True:
-        extraFuel = math.floor(mass / 3) - 2
-        if extraFuel > 0:
-            fuel += extraFuel
-        if extraFuel <= 0:
-            break
-        mass = extraFuel
-    part2 += fuel
 
-print("Part 1:", part1);
-print("Part 2:", part2);
+def part2(file_path):
+    with open(file_path, 'r') as file:
+        input_data = [line for line in file.read().splitlines()]
+        answer = 0
+
+        for line in input_data:
+            print(line)
+
+        return answer
+
+
+print("Part 1: ", part1('input_test.txt'))
+print("Part 2: ", part2('input_test.txt'))
