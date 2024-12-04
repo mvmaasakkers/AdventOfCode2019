@@ -3,17 +3,10 @@ import re
 
 def part1(file_path):
     with open(file_path, 'r') as file:
-        input_data = [line for line in file.read().splitlines()]
+        input_data = ''.join([line for line in file.read().splitlines()])
 
-        answer = 0
+        answer = sum([int(match[0]) * int(match[1]) for match in re.findall(r"mul\(([0-9]{1,3}),([0-9]{1,3})\)", input_data)])
 
-        # answer = sum([int(match[0]) * int(match[1]) for match in re.findall(r"mul\((\d+),(\d+)\)", input_data)])
-        for line in input_data:
-            answer += sum([int(match[0]) * int(match[1]) for match in re.findall(r"mul\(([0-9]{1,3}),([0-9]{1,3})\)", line)])
-        # print(matches)
-        # for line in input_data:
-        #     print(line)
-        #
         return answer
 
 
