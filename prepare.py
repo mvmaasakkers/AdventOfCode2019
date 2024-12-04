@@ -1,7 +1,7 @@
 import os.path
 import shutil
 
-for year in range(2015, 2023 + 1):
+for year in range(2015, 2023 + 2):
     if not os.path.isdir(f"./{year}"):
         os.mkdir(f"./{year}")
 
